@@ -14,6 +14,9 @@ import boto3
 
 # Create your views here.
 
+class Home(LoginView):
+  template_name = 'home.html'
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
