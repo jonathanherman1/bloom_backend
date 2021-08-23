@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloom</title>
+  {% comment %} <link rel="stylesheet" href="{% static 'css/base.css' %}"> {% endcomment %}
+  {% block head %}
+  {% endblock %}
+</head>
+<body>
+  <header>
+    <div class="header-logo-container">
+      <a href="{% url 'home' %}">
+        Home
+      </a>
+    </div>
+    <nav>
+      <ul>
+        {% if user.is_authenticated %}
+            {% comment %} <li><a href="{% url 'about' %}">About</a></li> {% endcomment %}
+            {% comment %} <li><a href="{% url 'logout' %}">Log out</a></li> {% endcomment %}
+          {% else %}
+            {% comment %} <li><a href="{% url 'about' %}">About</a></li> {% endcomment %}
+            {% comment %} <li><a href="{% url 'home' %}">Login</a></li> {% endcomment %}
+            {% comment %} <li><a href="{% url 'signup' %}">Sign Up</a></li> {% endcomment %}
+          {% endif %}
+      </ul>
+    </nav>
+  </header>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>
