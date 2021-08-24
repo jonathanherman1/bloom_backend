@@ -68,6 +68,10 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
 
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'bloom_backend.utils.my_jwt_response_handler'
+}
+
 ROOT_URLCONF = 'bloom_backend.urls'
 
 TEMPLATES = [
