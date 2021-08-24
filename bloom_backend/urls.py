@@ -23,10 +23,10 @@ router = routers.DefaultRouter()
 router.register(r'activities', views.ActivityView, 'activity')
 router.register(r'opportunities', views.OpportunityView, 'opportunity')
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('token-auth/', obtain_jwt_token),
     path("bloom/", include('bloom.urls')),
+    # path('api/opportunities/', views.opportunityTest, name='opportunity'),
     path('api/', include(router.urls)),
 ]

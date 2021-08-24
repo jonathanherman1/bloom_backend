@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from rest_framework import permissions, status, viewsets
+from django.http.response import HttpResponse
+from rest_framework import permissions, serializers, status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,6 +12,7 @@ from .models import Activity, Opportunity
 
 @api_view(['GET'])
 def current_user(request):
+    print(request)
     """
     Determine the current user by their token, and return their data
     """
@@ -37,7 +39,26 @@ class UserList(APIView):
 class ActivityView(viewsets.ModelViewSet):
     serializer_class = ActivitySerializer
     queryset = Activity.objects.all()
+    
+    def post(self, request, format=None):
+        serializer = UserSerializerWithToken(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class OpportunityView(viewsets.ModelViewSet):
     serializer_class = OpportunitySerializer
     queryset = Opportunity.objects.all()
+
+    def post(self, request, format=None):
+        if request.method == "POST":
+            serializer = UserSerializerWithToken(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        elif request.method == "GET":
+            data = Opportunity.objects.all()
+            serializer = UserSerializerWithToken(data, context={'request': request}, many=True)
+            return Response(serializer.data)
