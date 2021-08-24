@@ -21,6 +21,7 @@ from bloom import views
 
 router = routers.DefaultRouter()
 router.register(r'activities', views.ActivityView, 'activity')
+router.register(r'opportunities', views.OpportunityView, 'opportunity')
 
 
 urlpatterns = [
