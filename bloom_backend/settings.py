@@ -146,3 +146,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Auth courtesy of https://medium.com/@dakota.lillie/django-react-jwt-authentication-5015ee00ef9a
