@@ -16,15 +16,15 @@ class Activity(models.Model):
 class Opportunity(models.Model):
   name = models.CharField(max_length=100)
   date = models.DateField()
-  activities = models.ForeignKey(Activity, on_delete=models.CASCADE)
+  # activities = models.ForeignKey(Activity, on_delete=models.CASCADE)
   # company = models.OneToOneField(Company, on_delete=models.CASCADE)
   # contacts = models.ManyToManyField(Contacts)
-  interest_choices = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
-  interest = models.CharField(
-    max_length=2,
-    choices=interest_choices,
-    default=3
-  )
+  # interest_choices = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
+  # interest = models.CharField(
+  #   max_length=2,
+  #   choices=interest_choices,
+  #   default=3
+  # )
   # location = models.CharField(max_length=100)
   # pros = models.CharField(max_length=100)
   # cons = models.CharField(max_length=100)
@@ -36,7 +36,7 @@ class Opportunity(models.Model):
   # years_experience_required = models.CharField(max_length=100)
   # role_list_url = models.CharField(max_length=100)
   # listing_source = models.CharField(max_length=100)
-  # notes = models.CharField(max_length=100)
+  notes = models.CharField(max_length=100)
   # latest_activity = models.CharField(max_length=100)
   # keywords = models.CharField(max_length=100)
 
