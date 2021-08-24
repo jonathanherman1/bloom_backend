@@ -22,6 +22,8 @@ from bloom import views
 router = routers.DefaultRouter()
 router.register(r'activities', views.ActivityView, 'activity')
 router.register(r'opportunities', views.OpportunityView, 'opportunity')
+router.register(r'contacts', views.ContactView, 'contact')
+router.register(r'companies', views.CompanyView, 'company')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
