@@ -5,8 +5,8 @@ from rest_framework import permissions, serializers, status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import ActivitySerializer, OpportunitySerializer, UserSerializer, UserSerializerWithToken
-from .models import Activity, Opportunity
+from .serializers import ActivitySerializer, OpportunitySerializer, CompanySerializer, ContactSerializer, UserSerializer, UserSerializerWithToken
+from .models import Activity, Opportunity, Contact, Company
 
 # Create your views here.
 
@@ -65,5 +65,37 @@ class OpportunityView(viewsets.ModelViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         elif request.method == "GET":
             data = Opportunity.objects.all()
+            serializer = UserSerializerWithToken(data, context={'request': request}, many=True)
+            return Response(serializer.data)
+
+class ContactView(viewsets.ModelViewSet):
+    serializer_class = ContactSerializer
+    queryset = Contact.objects.all()
+
+    def post(self, request, format=None):
+        if request.method == "POST":
+            serializer = UserSerializerWithToken(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        elif request.method == "GET":
+            data = Contact.objects.all()
+            serializer = UserSerializerWithToken(data, context={'request': request}, many=True)
+            return Response(serializer.data)
+
+class CompanyView(viewsets.ModelViewSet):
+    serializer_class = CompanySerializer
+    queryset = Company.objects.all()
+
+    def post(self, request, format=None):
+        if request.method == "POST":
+            serializer = UserSerializerWithToken(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        elif request.method == "GET":
+            data = Company.objects.all()
             serializer = UserSerializerWithToken(data, context={'request': request}, many=True)
             return Response(serializer.data)
