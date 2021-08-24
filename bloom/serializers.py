@@ -1,12 +1,17 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
-from .models import Activity
+from .models import Activity, Opportunity
 
 
 class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
+        fields = "__all__"
+
+class OpportunitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Opportunity
         fields = "__all__"
 
 

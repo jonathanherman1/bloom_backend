@@ -4,8 +4,8 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import ActivitySerializer, UserSerializer, UserSerializerWithToken
-from .models import Activity
+from .serializers import ActivitySerializer, OpportunitySerializer, UserSerializer, UserSerializerWithToken
+from .models import Activity, Opportunity
 
 # Create your views here.
 
@@ -37,3 +37,7 @@ class UserList(APIView):
 class ActivityView(viewsets.ModelViewSet):
     serializer_class = ActivitySerializer
     queryset = Activity.objects.all()
+
+class OpportunityView(viewsets.ModelViewSet):
+    serializer_class = OpportunitySerializer
+    queryset = Opportunity.objects.all()
