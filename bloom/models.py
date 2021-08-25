@@ -61,7 +61,7 @@ class Company(models.Model):
   summary = models.CharField(max_length=100)
   interested = models.CharField(max_length=100)
   glassdoor_rating = models.PositiveIntegerField()
-  buisness_structure = models.CharField(max_length=100)
+  business_structure = models.CharField(max_length=100)
   notes = models.TextField(max_length=300)
   # Contacts
   # opportunities
