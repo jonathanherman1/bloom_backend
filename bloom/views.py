@@ -56,7 +56,7 @@ class OpportunityView(viewsets.ModelViewSet):
     serializer_class = OpportunitySerializer
     queryset = Opportunity.objects.all()
 
-    def post(self, request, format=None):
+    def post(request, format=None):
         if request.method == "POST":
             serializer = UserSerializerWithToken(data=request.data)
             if serializer.is_valid():
@@ -67,6 +67,7 @@ class OpportunityView(viewsets.ModelViewSet):
             data = Opportunity.objects.all()
             serializer = UserSerializerWithToken(data, context={'request': request}, many=True)
             return Response(serializer.data)
+
 
 class ContactView(viewsets.ModelViewSet):
     serializer_class = ContactSerializer
