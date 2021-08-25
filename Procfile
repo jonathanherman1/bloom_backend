@@ -1,0 +1,1 @@
+web: gunicorn bloom_backend.wsgi --log-file -
