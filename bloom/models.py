@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
 class Company(models.Model):
-  owner = models.ForeignKey(User, on_delete=models.CASCADE)
+  owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   name = models.CharField(max_length=100)
   location = models.CharField(max_length=150, blank=True)
   url = models.URLField(blank=True)
@@ -26,7 +26,7 @@ class Company(models.Model):
     return self.name
 
 class Contact(models.Model):
-  owner = models.ForeignKey(User, on_delete=models.CASCADE)
+  owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   name = models.CharField(max_length=100)
   phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.") 
   phone = models.CharField(validators=[phone_regex], max_length=16, blank=True)
@@ -39,7 +39,7 @@ class Contact(models.Model):
     return self.name
 
 class Opportunity(models.Model):
-  owner = models.ForeignKey(User, on_delete=models.CASCADE)
+  owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   name = models.CharField(max_length=100)
   date = models.DateField()
   notes = models.CharField(max_length=300, blank=True)
@@ -98,19 +98,19 @@ class Opportunity(models.Model):
   listing_source = models.CharField(max_length=100, blank=True)
   keywords = models.CharField(max_length=100, blank=True)
   company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
-  contacts = models.ManyToManyField(Contact)
+  contacts = models.ManyToManyField(Contact, blank=True)
   def __str__(self):
     return self.name
 
 class Activity(models.Model):
-  owner = models.ForeignKey(User, on_delete=models.CASCADE)
+  owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   name = models.CharField(max_length=100)
   date = models.DateField()
   type = models.CharField(max_length=50, blank=True)
   contact_method = models.CharField(max_length=100, blank=True, null=True)
   notes = models.TextField(max_length=300, blank=True, null=True)
-  contacts = models.ManyToManyField(Contact)
-  company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
-  opportunity = models.ForeignKey(Opportunity, on_delete=models.CASCADE, blank=True)
+  contacts = models.ManyToManyField(Contact, blank=True)
+  company = models.ForeignKey(Company, on_delete=models.CASCADE, )
+  opportunity = models.ForeignKey(Opportunity, on_delete=models.CASCADE, default=1)
   def __str__(self):
     return self.name
