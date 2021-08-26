@@ -110,7 +110,7 @@ class Activity(models.Model):
   contact_method = models.CharField(max_length=100, blank=True, null=True)
   notes = models.TextField(max_length=300, blank=True, null=True)
   contacts = models.ManyToManyField(Contact, blank=True)
-  company = models.ForeignKey(Company, on_delete=models.CASCADE, )
+  company = models.ForeignKey(Company, on_delete=models.CASCADE, default=1)
   opportunity = models.ForeignKey(Opportunity, on_delete=models.CASCADE, default=1)
   def __str__(self):
     return self.name
