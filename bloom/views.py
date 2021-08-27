@@ -12,7 +12,6 @@ from .models import Activity, Opportunity, Contact, Company
 
 @api_view(['GET'])
 def current_user(request):
-    print(request)
     """
     Determine the current user by their token, and return their data
     """
@@ -38,8 +37,8 @@ class UserList(APIView):
 
 class ActivityView(viewsets.ModelViewSet):
     serializer_class = ActivitySerializer
-    queryset = Activity.objects.all()
-    
+    def get_queryset(self, format=None):
+        return Activity.objects.filter(owner=self.request.user)
     def post(self, request, format=None):
         if request.method == "POST":
             serializer = UserSerializerWithToken(data=request.data)
@@ -47,32 +46,24 @@ class ActivityView(viewsets.ModelViewSet):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        elif request.method == "GET":
-            data = Activity.objects.all()
-            serializer = UserSerializerWithToken(data, context={'request': request}, many=True)
-            return Response(serializer.data)
 
 class OpportunityView(viewsets.ModelViewSet):
     serializer_class = OpportunitySerializer
-    queryset = Opportunity.objects.all()
-
-    def post(request, format=None):
+    def get_queryset(self, format=None):
+        return Opportunity.objects.filter(owner=self.request.user)
+    def post(self, request, format=None):
         if request.method == "POST":
             serializer = UserSerializerWithToken(data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        elif request.method == "GET":
-            data = Opportunity.objects.all()
-            serializer = UserSerializerWithToken(data, context={'request': request}, many=True)
-            return Response(serializer.data)
 
 
 class ContactView(viewsets.ModelViewSet):
     serializer_class = ContactSerializer
-    queryset = Contact.objects.all()
-
+    def get_queryset(self, format=None):
+        return Contact.objects.filter(owner=self.request.user)
     def post(self, request, format=None):
         if request.method == "POST":
             serializer = UserSerializerWithToken(data=request.data)
@@ -80,15 +71,11 @@ class ContactView(viewsets.ModelViewSet):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        elif request.method == "GET":
-            data = Contact.objects.all()
-            serializer = UserSerializerWithToken(data, context={'request': request}, many=True)
-            return Response(serializer.data)
 
 class CompanyView(viewsets.ModelViewSet):
     serializer_class = CompanySerializer
-    queryset = Company.objects.all()
-
+    def get_queryset(self, format=None):
+        return Company.objects.filter(owner=self.request.user)
     def post(self, request, format=None):
         if request.method == "POST":
             serializer = UserSerializerWithToken(data=request.data)
@@ -96,7 +83,3 @@ class CompanyView(viewsets.ModelViewSet):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        elif request.method == "GET":
-            data = Company.objects.all()
-            serializer = UserSerializerWithToken(data, context={'request': request}, many=True)
-            return Response(serializer.data)
