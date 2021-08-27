@@ -1,12 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
 
 class Company(models.Model):
   owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   name = models.CharField(max_length=100)
   location = models.CharField(max_length=150, blank=True)
-  url = models.URLField(blank=True)
+  url = models.CharField(max_length=150, blank=True)
   summary = models.CharField(max_length=100, blank=True)
   interested = models.BooleanField(default=False, null=True)
   glassdoor_rating = models.DecimalField(max_digits=5, decimal_places=1)
@@ -81,7 +80,7 @@ class Opportunity(models.Model):
     blank=True
   )
   years_experience_required = models.CharField(max_length=100, blank=True)
-  role_list_url = models.URLField(max_length=100, blank=True)
+  role_list_url = models.CharField(max_length=150, blank=True)
   listing_source = models.CharField(max_length=100, blank=True)
   keywords = models.CharField(max_length=100, blank=True)
   company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
@@ -92,8 +91,7 @@ class Opportunity(models.Model):
 class Contact(models.Model):
   owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   name = models.CharField(max_length=100)
-  phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.") 
-  phone = models.CharField(validators=[phone_regex], max_length=16, blank=True)
+  phone = models.CharField(max_length=35, blank=True)
   email = models.EmailField(max_length=200, blank=True)
   department = models.CharField(max_length=100, blank=True)
   first_contact_through = models.CharField(max_length=100, blank=True)
