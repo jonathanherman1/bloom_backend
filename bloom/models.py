@@ -25,19 +25,6 @@ class Company(models.Model):
   def __str__(self):
     return self.name
 
-class Contact(models.Model):
-  owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
-  name = models.CharField(max_length=100)
-  phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.") 
-  phone = models.CharField(validators=[phone_regex], max_length=16, blank=True)
-  email = models.EmailField(max_length=200, blank=True)
-  department = models.CharField(max_length=100, blank=True)
-  first_contact_through = models.CharField(max_length=100, blank=True)
-  notes = models.TextField(max_length=300, blank=True)
-  company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
-  def __str__(self):
-    return self.name
-
 class Opportunity(models.Model):
   owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   name = models.CharField(max_length=100)
@@ -98,7 +85,22 @@ class Opportunity(models.Model):
   listing_source = models.CharField(max_length=100, blank=True)
   keywords = models.CharField(max_length=100, blank=True)
   company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
-  contacts = models.ManyToManyField(Contact, blank=True)
+  # contacts = models.ManyToManyField(Contact, blank=True)
+  def __str__(self):
+    return self.name
+
+class Contact(models.Model):
+  owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+  name = models.CharField(max_length=100)
+  phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.") 
+  phone = models.CharField(validators=[phone_regex], max_length=16, blank=True)
+  email = models.EmailField(max_length=200, blank=True)
+  department = models.CharField(max_length=100, blank=True)
+  first_contact_through = models.CharField(max_length=100, blank=True)
+  notes = models.TextField(max_length=300, blank=True)
+  company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
+  opportunity = models.ForeignKey(Opportunity, on_delete=models.CASCADE, null=True, blank=True)
+  
   def __str__(self):
     return self.name
 
