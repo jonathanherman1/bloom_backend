@@ -8,7 +8,7 @@ class Company(models.Model):
   url = models.CharField(max_length=150, blank=True)
   summary = models.CharField(max_length=100, blank=True)
   interested = models.BooleanField(default=False, null=True)
-  glassdoor_rating = models.DecimalField(max_digits=5, decimal_places=1, blank=True)
+  glassdoor_rating = models.DecimalField(max_digits=5, decimal_places=1, blank=True, null=True)
   PUBLIC = 'Public'
   PRIVATE = 'Private'
   NON_PROFIT = 'Non_Profit'
