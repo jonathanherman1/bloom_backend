@@ -48,18 +48,18 @@ class Opportunity(models.Model):
   responsibilities = models.TextField(blank=True)
   requirements = models.TextField(blank=True)
   
-  STARTED = 'started'
-  READ_JOB_DESCRIPTION = 'read_job_description'
-  DETERMINED_IF_QUALIFIED = 'determined_if_qualified'
-  RESEARCHED_COMPANY = 'researched_company'
-  OPTIMIZED_RESUME = 'optimized_resume_for_role'
-  IN_CONTACT = 'in_contact'
-  APPLIED = 'applied'
-  INTERVIEWED = 'interviewed'
-  NEGOTIATED = 'negotiated'
-  ACCEPTED_OFFER = 'accepted_offer'
-  PASS = 'decided_to_pass'
-  NO_OFFER_EXTENDED = 'no_offer_extended'
+  STARTED = 'Started'
+  READ_JOB_DESCRIPTION = 'Read Job Description'
+  DETERMINED_IF_QUALIFIED = 'Determined If Qualified'
+  RESEARCHED_COMPANY = 'Researched Company'
+  OPTIMIZED_RESUME = 'Optimized Resume for Role'
+  IN_CONTACT = 'In Contact'
+  APPLIED = 'Applied'
+  INTERVIEWED = 'Interviewed'
+  NEGOTIATED = 'Negotiated'
+  ACCEPTED_OFFER = 'Accepted Offer'
+  PASS = 'Decided to Pass'
+  NO_OFFER_EXTENDED = 'No Offer Extended'
   status_choices = [
     (STARTED, 'Started'), 
     (READ_JOB_DESCRIPTION, 'Read Job Description'), 
