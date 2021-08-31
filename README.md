@@ -1,4 +1,4 @@
-[![Bloom Logo Banner Dark](src/Assets/screenshots/logo-banner-dark.png)](https://go-bloom.com)
+[![Bloom Logo Banner Dark](/assets/screenshots/logo-banner-dark.png)](https://go-bloom.com)
 
 Grow Your Opportunities<sup>TM</sup>
 
@@ -22,55 +22,55 @@ Bloom helps you easily track job opportunities. Maintain a lightweight CRM of co
 <tr>
 <td>
 
-![sign in light mode](src/Assets/screenshots/lightmode%20-%20signin.png)
+![sign in light mode](/assets/screenshots/lightmode%20-%20signin.png)
 </td>
 <td>
 
-![side nav dark mode](src/Assets/screenshots/darkmode%20-%20sidenav.png)
-</td>
-</tr>
-
-<tr>
-<td>
-
-![companies empty light mode](src/Assets/screenshots/lightmode%20-%20contactsempty.png)
-</td>
-<td>
-
-![opportunities detail empty dark mode](src/Assets/screenshots/darkmode%20-%20oppempty.png)
+![side nav dark mode](/assets/screenshots/darkmode%20-%20sidenav.png)
 </td>
 </tr>
 
 <tr>
 <td>
 
-![opportunities index light mode](src/Assets/screenshots/lightmode-opp.png)
+![companies empty light mode](/assets/screenshots/lightmode%20-%20contactsempty.png)
 </td>
 <td>
 
-![activities dark mode](src/Assets/screenshots/darkmode-activities.png)
-</td>
-</tr>
-
-<tr>
-<td>
-
-![companies light mode](src/Assets/screenshots/lightmode%20-%20companyempty.png)
-</td>
-<td>
-
-![contacts detail page dark mode](src/Assets/screenshots/darkmode%20-%20contactsdetail.png)
+![opportunities detail empty dark mode](/assets/screenshots/darkmode%20-%20oppempty.png)
 </td>
 </tr>
 
 <tr>
 <td>
 
-![opportunity detail light mode](src/Assets/screenshots/lightmode%20-%20oppdetail.png)
+![opportunities index light mode](/assets/screenshots/lightmode-opp.png)
 </td>
 <td>
 
-![opportunities detail page dark mode](src/Assets/screenshots/darkmode%20-%20oppdetail.png)
+![activities dark mode](/assets/screenshots/darkmode-activities.png)
+</td>
+</tr>
+
+<tr>
+<td>
+
+![companies light mode](/assets/screenshots/lightmode%20-%20companyempty.png)
+</td>
+<td>
+
+![contacts detail page dark mode](/assets/screenshots/darkmode%20-%20contactsdetail.png)
+</td>
+</tr>
+
+<tr>
+<td>
+
+![opportunity detail light mode](/assets/screenshots/lightmode%20-%20oppdetail.png)
+</td>
+<td>
+
+![opportunities detail page dark mode](/assets/screenshots/darkmode%20-%20oppdetail.png)
 </td>
 </tr>
 
@@ -98,7 +98,7 @@ Bloom helps you easily track job opportunities. Maintain a lightweight CRM of co
 - Heroku
 - Lottie
 
-![Bloom Technologies Used](src/Assets/screenshots/bloom%20tech.png)
+![Bloom Technologies Used](/assets/screenshots/bloom%20tech.png)
 
 ## Next Steps
 
